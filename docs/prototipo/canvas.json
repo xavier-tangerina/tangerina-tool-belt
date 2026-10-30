@@ -1,0 +1,20 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-30T15:50:00Z"},
+  "title": "Tool Belt — Protótipo",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1280, "h": 880, "title": "T1 Início · escuro (navegável)", "is_interactive": true, "expand": "fill"},
+    "Paleta.dc.html": {"x": 1360, "y": 0, "w": 1280, "h": 880, "title": "T2 Paleta Ctrl+K · escuro", "is_interactive": true},
+    "PullAppDb.dc.html": {"x": 0, "y": 1000, "w": 1280, "h": 880, "title": "T4 Ferramenta script · Pull App DB · escuro", "is_interactive": true},
+    "TemplateSpec.dc.html": {"x": 1360, "y": 1000, "w": 1280, "h": 880, "title": "Ferramenta 01 · Template de especificação · escuro", "is_interactive": true},
+    "InicioClaro.dc.html": {"x": 0, "y": 2000, "w": 1280, "h": 880, "title": "T1 Início · claro", "is_interactive": true},
+    "TemplateSpecClaro.dc.html": {"x": 1360, "y": 2000, "w": 1280, "h": 880, "title": "Ferramenta 01 · claro", "is_interactive": true}
+  },
+  "order": ["Main.dc.html", "Paleta.dc.html", "PullAppDb.dc.html", "TemplateSpec.dc.html", "InicioClaro.dc.html", "TemplateSpecClaro.dc.html"],
+  "notes": {
+    "titulo": {"x": 0, "y": -300, "text": "Tangerina Tool Belt — protótipo navegável (T1, T2, T4, Ferramenta 01)", "kind": "title1", "maxW": 2640}
+  },
+  "designSystems": []
+}

@@ -29,3 +29,5 @@ Formato: uma linha por decisão. Mudar uma decisão = nova linha que **substitui
 | D23 | 30/10/2026 | Gerenciador de pacotes **pnpm**, com `node-linker=hoisted` se o empacotamento do Electron exigir | npm | Xavier (P7) |
 | D24 | 30/10/2026 | Pasta padrão dos pacotes de especificação: **`Documentos\ToolBelt\specs\`**, configurável | `docs/specs/` no repo do projeto informado | Xavier (P9) |
 | D25 | 30/10/2026 | `git init` em `tool-belt` já; remoto **privado na conta Tangerina** | Conta pessoal; sem versionamento por ora | Xavier (P10) |
+| D26 | 30/10/2026 | Texto sobre o acento é **`#0d0d0d` nos dois temas** (substitui o `--accent-fg: #ffffff` do claro no doc 03) e entra o token **`--accent-text`** (`#FF7A1A` escuro, `#B84A00` claro) para laranja usado como texto; apoio: `--accent-soft`, `--scrim`, `--shadow` | Manter branco sobre `#E55F00` (~4,1:1, reprova AA) | Xavier (aprovada em 30/10/2026, proposta do doc 07) |
+| D27 | 30/10/2026 | Protótipo visual feito como **canvas de design no claude.ai** (pranchas `.dc.html`), com cópia da fonte em `docs/prototipo/` | HTML solto no repo; Figma | Claude, a pedido de Xavier ("protótipo antes de qualquer código") |

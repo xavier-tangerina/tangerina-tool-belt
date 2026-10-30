@@ -2,7 +2,7 @@
 
 Aplicativo desktop (Next.js + Electron) que reúne, organiza por categoria e executa as ferramentas locais de desenvolvimento, design e especificação da Tangerina Tech.
 
-> **Status:** Fase 0 (estratégia e documentação). Ainda não há código.
+> **Status:** Fase 0 concluída; protótipo visual em revisão (doc 07). Ainda não há código do app.
 
 ## Documentação
 
@@ -15,6 +15,7 @@ Aplicativo desktop (Next.js + Electron) que reúne, organiza por categoria e exe
 | 04 | [Arquitetura técnica](docs/04-arquitetura-tecnica.md) | Stack, manifesto de ferramenta, runner `.sh`, cofre, IA |
 | 05 | [Inventário e migração](docs/05-inventario-migracao.md) | Ferramentas de `_tools`, categoria, plano de porte |
 | 06 | [Ferramenta 01 — Template de especificação](docs/06-ferramenta-template-especificacao.md) | Especificação da primeira ferramenta |
+| 07 | [Protótipo navegável](docs/07-prototipo.md) | Canvas de revisão (T1, T2, T4, Ferramenta 01), interações, simplificações e achados |
 | — | [Decisões](docs/decisoes.md) | Registro de decisões (ADR resumido) |
 | — | [Perguntas em aberto](docs/perguntas-abertas.md) | Perguntas da fase 0 e respostas (todas resolvidas) |
 | — | [Referências](docs/referencias/) | Template original da skill `especificacao-funcionalidade` |

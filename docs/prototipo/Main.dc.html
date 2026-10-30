@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Tool Belt — Início</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.tb{--bg:#0d0d0d;--surface:#161616;--surface-2:#1f1f1f;--border:#2a2a2a;--text:#f5f5f4;--text-muted:#a3a3a3;--accent:#FF6A00;--accent-text:#FF7A1A;--accent-fg:#0d0d0d;--accent-soft:rgba(255,106,0,.14);--success:#22c55e;--warning:#f59e0b;--danger:#ef4444;--scrim:rgba(0,0,0,.6);--shadow:0 24px 64px rgba(0,0,0,.55)}
+.tb.light{--bg:#fafaf9;--surface:#ffffff;--surface-2:#f2f2f0;--border:#e4e4e0;--text:#141414;--text-muted:#5c5c5c;--accent:#E55F00;--accent-text:#B84A00;--accent-fg:#0d0d0d;--accent-soft:rgba(229,95,0,.12);--success:#15803d;--warning:#b45309;--danger:#b91c1c;--scrim:rgba(20,20,20,.35);--shadow:0 24px 64px rgba(0,0,0,.18)}
+.tb *{box-sizing:border-box}
+.tb button,.tb input,.tb textarea{font-family:inherit;font-size:inherit;color:inherit}
+.tb button{cursor:pointer}
+.tb :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tb .nav{background:transparent;border:0;width:100%;text-align:left;display:flex;align-items:center;gap:8px;height:32px;padding:0 10px;border-radius:6px;color:var(--text-muted)}
+.tb .nav:hover{background:var(--surface-2);color:var(--text)}
+.tb .btn{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-weight:500}
+.tb .btn:hover{background:var(--surface-2)}
+.tb .btn-p{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:6px;border:0;background:var(--accent);color:var(--accent-fg);font-weight:600}
+.tb .btn-p:hover{filter:brightness(1.08)}
+.tb .ico{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:0;background:transparent;color:var(--text-muted)}
+.tb .ico:hover{background:var(--surface-2);color:var(--text)}
+.tb .fld{width:100%;height:36px;padding:0 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);outline:none}
+.tb textarea.fld{height:auto;padding:8px 10px;resize:vertical;line-height:1.45}
+.tb .fld:focus{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.tb .fld::placeholder{color:var(--text-muted);opacity:.75}
+.tb .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:left;display:flex;flex-direction:column;gap:6px}
+.tb .card:hover{border-color:var(--accent)}
+.tb .tab{background:transparent;border:0;border-bottom:2px solid transparent;height:38px;padding:0 4px;color:var(--text-muted);font-weight:500}
+.tb .tab:hover{color:var(--text)}
+.tb .lnk{background:transparent;border:0;padding:0;color:var(--accent-text);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.tb .row:hover{background:var(--surface-2)}
+.tb .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.tb .h{font-family:'Space Grotesk',sans-serif;font-weight:600}
+.tb .kbd{font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid var(--border);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--text-muted);background:var(--surface)}
+.tb .scroll::-webkit-scrollbar{width:8px;height:8px}.tb .scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:8px}
+@media (prefers-reduced-motion: no-preference){.tb .anim{animation:tbIn .16s ease-out}}
+@keyframes tbIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div class="tb {{themeClass}}" style="min-height: 880px; height: 100%; background: var(--bg); color: var(--text); font-family: Figtree, system-ui, sans-serif; font-size: 14px; line-height: 1.4; display: flex; flex-direction: column; position: relative; overflow: hidden">
+
+<header style="height: 44px; flex: none; display: flex; align-items: center; gap: 12px; padding: 0 0 0 8px; border-bottom: 1px solid var(--border); background: var(--bg)">
+<button class="ico" aria-label="Recolher barra lateral (Ctrl+B)" title="Recolher barra lateral (Ctrl+B)" onClick="{{toggleSidebar}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg></button>
+<button onClick="{{goHome}}" aria-label="Tool Belt — Início" style="display: flex; align-items: center; gap: 8px; background: transparent; border: 0; padding: 0">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#FF6A00"></rect><rect x="6" y="7" width="12" height="10" rx="2" fill="none" stroke="#0d0d0d" stroke-width="2"></rect><path d="M12 7v10" stroke="#0d0d0d" stroke-width="2"></path></svg>
+<span class="h" style="font-size: 15px">Tool Belt</span>
+</button>
+<div style="flex: 1; display: flex; justify-content: center; min-width: 0">
+<button onClick="{{openPalette}}" aria-label="Buscar ferramenta (Ctrl+K)" style="width: min(460px, 100%); height: 30px; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted)">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<span style="flex: 1; text-align: left; font-size: 13px">Buscar ferramenta…</span>
+<span class="kbd">Ctrl K</span>
+</button>
+</div>
+<button class="ico" aria-label="Configurações (Ctrl+,)" title="Configurações" onClick="{{oosSettings}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"></path></svg></button>
+<button class="ico" aria-label="{{themeLabel}}" title="{{themeLabel}}" onClick="{{toggleTheme}}">
+<sc-if value="{{isDark}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg></sc-if>
+<sc-if value="{{isLight}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"></path></svg></sc-if>
+</button>
+<div aria-hidden="true" style="display: flex; height: 44px; color: var(--text-muted)">
+<span style="width: 46px; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 6h10" stroke="currentColor"></path></svg></span>
+<span style="width: 46px; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" fill="none" stroke="currentColor"></rect></svg></span>
+<span style="width: 46px; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11" stroke="currentColor"></path></svg></span>
+</div>
+</header>
+
+<div style="flex: 1; display: flex; flex-wrap: wrap; min-height: 0">
+
+<sc-if value="{{sidebarOpen}}" hint-placeholder-val="{{ true }}">
+<nav aria-label="Navegação principal" class="scroll" style="flex: 0 0 240px; border-right: 1px solid var(--border); background: var(--bg); padding: 10px 8px; display: flex; flex-direction: column; gap: 2px; overflow-y: auto; max-height: 836px">
+<button class="nav" onClick="{{goHome}}" style="background: {{navHomeBg}}; color: {{navHomeFg}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"></path></svg>Início</button>
+
+<div style="font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted); padding: 12px 10px 4px; display: flex; align-items: center; gap: 6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>FAVORITOS</div>
+<button class="nav" onClick="{{goPull}}" style="background: {{navPullBg}}; color: {{navPullFg}}; padding-left: 26px">Pull App DB</button>
+<button class="nav" onClick="{{goSpec}}" style="background: {{navSpecBg}}; color: {{navSpecFg}}; padding-left: 26px">Template de especificação</button>
+
+<div style="font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted); padding: 12px 10px 4px; display: flex; align-items: center; gap: 6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>RECENTES</div>
+<button class="nav" onClick="{{goSpec}}" style="padding-left: 26px">Template de especificação</button>
+<button class="nav" onClick="{{oosGitSsh}}" style="padding-left: 26px">Git Remote SSH</button>
+
+<div style="font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted); padding: 12px 10px 4px">CATEGORIAS</div>
+<button class="nav" onClick="{{toggleCatSpec}}" aria-expanded="{{catSpecOpen}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M16 13H8M16 17H8"></path></svg><span style="flex: 1">Especificação</span><span style="font-size: 12px">1</span></button>
+<sc-if value="{{catSpecOpen}}" hint-placeholder-val="{{ true }}"><button class="nav" onClick="{{goSpec}}" style="padding-left: 33px; background: {{navSpecBg}}; color: {{navSpecFg}}">Template de especificação</button></sc-if>
+<button class="nav" onClick="{{oosCat}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V4h16v3M9 20h6M12 4v16"></path></svg><span style="flex: 1">Formatação &amp; Conversão</span><span style="font-size: 12px">2</span></button>
+<button class="nav" onClick="{{oosCat}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span style="flex: 1">DevTools</span><span style="font-size: 12px">1</span></button>
+<button class="nav" onClick="{{toggleCatDb}}" aria-expanded="{{catDbOpen}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg><span style="flex: 1">Banco de Dados</span><span style="font-size: 12px">3</span></button>
+<sc-if value="{{catDbOpen}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<button class="nav" onClick="{{goPull}}" style="padding-left: 33px; background: {{navPullBg}}; color: {{navPullFg}}">Pull App DB</button>
+<button class="nav" onClick="{{oosPush}}" style="padding-left: 33px">Push App DB</button>
+<button class="nav" onClick="{{oosSeed}}" style="padding-left: 33px">Seed DB</button>
+</div>
+</sc-if>
+<button class="nav" onClick="{{oosCat}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a6 6 0 0 1-12 0V8z"></path></svg><span style="flex: 1">API &amp; Massa de Teste</span><span style="font-size: 12px">4</span></button>
+<button class="nav" onClick="{{oosCat}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v12"></path><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg><span style="flex: 1">Git</span><span style="font-size: 12px">2</span></button>
+<button class="nav" onClick="{{oosCat}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg><span style="flex: 1">Web &amp; QA</span><span style="font-size: 12px">1</span></button>
+
+<div style="font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted); padding: 12px 10px 4px">PROJETOS</div>
+<button class="nav" onClick="{{oosCat}}"><span aria-hidden="true" style="width: 15px; height: 15px; display: inline-flex; align-items: center; justify-content: center"><span style="width: 8px; height: 8px; border-radius: 99px; background: var(--accent)"></span></span><span style="flex: 1">GDF Boticário</span><span style="font-size: 12px">7</span></button>
+
+<div style="height: 1px; background: var(--border); margin: 10px 4px"></div>
+<button class="nav" onClick="{{oosGuides}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Guias</button>
+<button class="nav" onClick="{{oosNew}}" style="color: var(--accent-text); font-weight: 600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Nova ferramenta</button>
+</nav>
+</sc-if>
+
+<main style="flex: 999 1 560px; min-width: 0; padding: 20px 24px 24px; overflow: auto; max-height: 836px" class="scroll">
+
+<sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
+<div style="max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+<section style="display: flex; flex-direction: column; gap: 14px; padding: 18px 0 4px">
+<h1 class="h" style="margin: 0; font-size: 24px">Bom dia, Xavier. O que vamos rodar?</h1>
+<button onClick="{{openPalette}}" aria-label="Buscar ferramenta, guia ou ação (Ctrl+K)" style="height: 52px; display: flex; align-items: center; gap: 12px; padding: 0 14px 0 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); font-size: 15px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<span style="flex: 1; text-align: left">Buscar ferramenta, guia ou ação… cole um JWT ou Markdown para detectar</span>
+<span class="kbd">Ctrl K</span>
+</button>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 10px">
+<h2 class="h" style="margin: 0; font-size: 15px; display: flex; align-items: center; gap: 8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>Favoritos</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px">
+<button class="card" onClick="{{goPull}}">
+<span style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>Banco de Dados · script</span>
+<span style="font-weight: 600; font-size: 15px">Pull App DB</span>
+<span style="color: var(--text-muted); font-size: 13px">Copia o banco SQLite do app Android para o PC.</span>
+<span style="font-size: 12px; color: var(--accent-text); font-weight: 600">GDF Boticário</span>
+</button>
+<button class="card" onClick="{{goSpec}}">
+<span style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>Especificação · ui</span>
+<span style="font-weight: 600; font-size: 15px">Template de especificação</span>
+<span style="color: var(--text-muted); font-size: 13px">Preenche o template e gera o pacote para a skill.</span>
+<span style="font-size: 12px; color: var(--text-muted)">Genérica</span>
+</button>
+<button class="card" onClick="{{oosJwt}}">
+<span style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m4 17 6-6-6-6M12 19h8"></path></svg>DevTools · ui</span>
+<span style="font-weight: 600; font-size: 15px">JWT Decoder</span>
+<span style="color: var(--text-muted); font-size: 13px">Decodifica cabeçalho e payload, offline.</span>
+<span style="font-size: 12px; color: var(--text-muted)">Genérica</span>
+</button>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 28px">
+<section style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 10px; min-width: 0">
+<h2 class="h" style="margin: 0; font-size: 15px">Recentes</h2>
+<div style="border: 1px solid var(--border); border-radius: 10px; background: var(--surface); overflow: hidden">
+<button class="row" onClick="{{goSpec}}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 0; border-bottom: 1px solid var(--border); background: transparent; text-align: left"><span style="flex: 1">Template de especificação</span><span style="font-size: 12px; color: var(--text-muted)">há 12 min</span></button>
+<button class="row" onClick="{{goPull}}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 0; border-bottom: 1px solid var(--border); background: transparent; text-align: left"><span style="flex: 1">Pull App DB</span><span style="font-size: 12px; color: var(--success); display: inline-flex; gap: 4px; align-items: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>OK</span><span style="font-size: 12px; color: var(--text-muted)">hoje 09:14</span></button>
+<button class="row" onClick="{{oosGitSsh}}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 0; background: transparent; text-align: left"><span style="flex: 1">Git Remote SSH</span><span style="font-size: 12px; color: var(--text-muted)">ontem</span></button>
+</div>
+</section>
+<section style="flex: 2 1 420px; display: flex; flex-direction: column; gap: 10px; min-width: 0">
+<h2 class="h" style="margin: 0; font-size: 15px">Categorias</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px">
+<button class="card" onClick="{{goSpec}}" style="flex-direction: row; align-items: center; gap: 10px; padding: 12px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg><span style="flex: 1">Especificação</span><span style="color: var(--text-muted); font-size: 12px">1</span></button>
+<button class="card" onClick="{{oosCat}}" style="flex-direction: row; align-items: center; gap: 10px; padding: 12px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M4 7V4h16v3M9 20h6M12 4v16"></path></svg><span style="flex: 1">Formatação &amp; Conversão</span><span style="color: var(--text-muted); font-size: 12px">2</span></button>
+<button class="card" onClick="{{oosCat}}" style="flex-direction: row; align-items: center; gap: 10px; padding: 12px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span style="flex: 1">DevTools</span><span style="color: var(--text-muted); font-size: 12px">1</span></button>
+<button class="card" onClick="{{goPull}}" style="flex-direction: row; align-items: center; gap: 10px; padding: 12px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg><span style="flex: 1">Banco de Dados</span><span style="color: var(--text-muted); font-size: 12px">3</span></button>
+<button class="card" onClick="{{oosCat}}" style="flex-direction: row; align-items: center; gap: 10px; padding: 12px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a6 6 0 0 1-12 0V8z"></path></svg><span style="flex: 1">API &amp; Massa de Teste</span><span style="color: var(--text-muted); font-size: 12px">4</span></button>
+<button class="card" onClick="{{oosCat}}" style="flex-direction: row; align-items: center; gap: 10px; padding: 12px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M6 3v12"></path><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg><span style="flex: 1">Git</span><span style="color: var(--text-muted); font-size: 12px">2</span></button>
+<button class="card" onClick="{{oosCat}}" style="flex-direction: row; align-items: center; gap: 10px; padding: 12px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path></svg><span style="flex: 1">Web &amp; QA</span><span style="color: var(--text-muted); font-size: 12px">1</span></button>
+<button class="card" onClick="{{oosNew}}" style="flex-direction: row; align-items: center; gap: 10px; padding: 12px; border-style: dashed; color: var(--accent-text); font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg><span style="flex: 1">Nova ferramenta</span></button>
+</div>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isPull}}" hint-placeholder-val="{{ false }}">
+<div style="max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); flex-wrap: wrap"><span>Banco de Dados</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg><span style="color: var(--text)">Pull App DB</span>
+<span style="flex: 1"></span>
+<span style="font-size: 12px; padding: 2px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); font-weight: 600">GDF Boticário</span>
+<span style="font-size: 12px; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--border)">script</span>
+</div>
+<h1 class="h" style="margin: 0; font-size: 24px">Pull App DB</h1>
+<p style="margin: 0; color: var(--text-muted)">Copia o banco SQLite do app Android (sqflite) para o computador.</p>
+<sc-if value="{{adbMissing}}" hint-placeholder-val="{{ true }}">
+<div role="status" style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--warning); color: var(--text); font-size: 13px; flex-wrap: wrap">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg>
+<span style="flex: 1"><strong>ADB não encontrado.</strong> Instale o Android Platform Tools e coloque no PATH.</span>
+<button class="lnk" onClick="{{fixAdb}}">Configurar</button>
+</div>
+</sc-if>
+<sc-if value="{{adbOk}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Pré-requisitos OK · adb encontrado no PATH</div>
+</sc-if>
+</div>
+
+<div role="tablist" aria-label="Seções da ferramenta" style="display: flex; gap: 20px; border-bottom: 1px solid var(--border)">
+<button role="tab" class="tab" aria-selected="{{pullTabs.exec}}" onClick="{{tabExec}}" style="border-bottom-color: {{pullTabLine.exec}}; color: {{pullTabFg.exec}}">Executar</button>
+<button role="tab" class="tab" aria-selected="{{pullTabs.guide}}" onClick="{{tabGuide}}" style="border-bottom-color: {{pullTabLine.guide}}; color: {{pullTabFg.guide}}">Guia</button>
+<button role="tab" class="tab" aria-selected="{{pullTabs.hist}}" onClick="{{tabHist}}" style="border-bottom-color: {{pullTabLine.hist}}; color: {{pullTabFg.hist}}">Histórico</button>
+</div>
+
+<sc-if value="{{pullTabs.exec}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px 16px">
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="p-pkg" style="font-size: 13px; font-weight: 500">Pacote do app <span style="color: var(--danger)" aria-hidden="true">*</span></label><input id="p-pkg" class="fld mono" style="font-size: 13px" value="{{pull.pkg}}" onChange="{{onPkg}}" spellCheck="{{ false }}"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="p-db" style="font-size: 13px; font-weight: 500">Caminho do banco no device</label><input id="p-db" class="fld mono" style="font-size: 13px" value="{{pull.db}}" onChange="{{onDb}}" spellCheck="{{ false }}"></div>
+<div style="display: flex; flex-direction: column; gap: 6px; grid-column: 1 / -1"><label for="p-out" style="font-size: 13px; font-weight: 500">Pasta de saída</label>
+<div style="display: flex; gap: 8px"><input id="p-out" class="fld mono" style="font-size: 13px" value="{{pull.out}}" onChange="{{onOut}}" spellCheck="{{ false }}"><button class="btn" onClick="{{pickFolder}}" aria-label="Escolher pasta de saída"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>Escolher</button></div></div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 12px; border-radius: 6px; background: var(--surface); border: 1px solid var(--border)">
+<code class="mono" style="flex: 1; font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{cmd}}</code>
+<button class="ico" aria-label="Copiar comando equivalente" title="Copiar comando" onClick="{{copyCmd}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+</div>
+
+<div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+<div style="flex: 1; min-width: 200px; display: flex; align-items: center; gap: 10px">
+<div aria-hidden="true" style="flex: 1; height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden"><div style="height: 6px; width: {{run.pct}}; background: {{run.barColor}}; transition: width .18s ease-out"></div></div>
+<span style="font-size: 12px; color: {{run.statusColor}}; font-weight: 600; min-width: 140px">{{run.statusText}}</span>
+</div>
+<sc-if value="{{run.running}}" hint-placeholder-val="{{ false }}"><button class="btn" onClick="{{cancelRun}}">Cancelar <span class="kbd">Esc</span></button></sc-if>
+<button class="btn-p" onClick="{{startRun}}" disabled="{{run.running}}" style="opacity: {{run.btnOpacity}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3l14 9-14 9z"></path></svg>Executar <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; opacity: .75">Ctrl+Enter</span></button>
+</div>
+
+<div class="mono scroll" role="log" aria-live="polite" aria-label="Log da execução" style="background: #0a0a0a; color: #e7e7e5; border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 12.5px; line-height: 1.6; min-height: 150px; max-height: 210px; overflow: auto">
+<sc-if value="{{run.empty}}" hint-placeholder-val="{{ true }}"><div style="color: #8a8a8a">O log da execução aparece aqui, ao vivo.</div></sc-if>
+<sc-for list="{{run.lines}}" as="ln" hint-placeholder-count="0"><div style="color: {{ln.color}}; white-space: pre-wrap">{{ln.text}}</div></sc-for>
+</div>
+
+<sc-if value="{{run.hasOutput}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); flex-wrap: wrap">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+<span class="mono" style="flex: 1; font-size: 12px; min-width: 200px">{{run.output}}</span>
+<button class="btn" onClick="{{openOut}}">Abrir pasta</button>
+<button class="btn" onClick="{{copyOut}}">Copiar caminho</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{pullTabs.guide}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
+<p style="margin: 0">Use antes de inspecionar ou restaurar dados do app. Faz parte do fluxo <strong>Restaurar banco do app</strong>: Pull App DB → inspecionar → Push App DB.</p>
+<h2 class="h" style="margin: 4px 0 0; font-size: 15px">Parâmetros</h2>
+<div style="border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 13px">
+<div style="display: grid; grid-template-columns: 1.1fr 1.4fr 2fr; gap: 12px; padding: 8px 12px; background: var(--surface-2); font-weight: 600"><span>Flag</span><span>Campo</span><span>Padrão</span></div>
+<div style="display: grid; grid-template-columns: 1.1fr 1.4fr 2fr; gap: 12px; padding: 8px 12px; border-top: 1px solid var(--border)"><code class="mono">--pkg</code><span>Pacote do app *</span><code class="mono" style="font-size: 12px">com.boticario.gdfauditoria</code></div>
+<div style="display: grid; grid-template-columns: 1.1fr 1.4fr 2fr; gap: 12px; padding: 8px 12px; border-top: 1px solid var(--border)"><code class="mono">--db-path</code><span>Caminho do banco</span><code class="mono" style="font-size: 12px">app_flutter/database/gdf_boticario.db</code></div>
+<div style="display: grid; grid-template-columns: 1.1fr 1.4fr 2fr; gap: 12px; padding: 8px 12px; border-top: 1px solid var(--border)"><code class="mono">--out</code><span>Pasta de saída</span><code class="mono" style="font-size: 12px">${TB_OUT_DIR}/android_db</code></div>
+</div>
+<h2 class="h" style="margin: 4px 0 0; font-size: 15px">Pré-requisitos</h2>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px"><span style="color: {{adbColor}}; font-weight: 600">{{adbStatus}}</span><code class="mono">adb</code><span style="color: var(--text-muted)">— Android Platform Tools no PATH</span></div>
+<h2 class="h" style="margin: 4px 0 0; font-size: 15px">Códigos de saída</h2>
+<p style="margin: 0; color: var(--text-muted); font-size: 13px">0 OK · 1 erro de execução · 2 uso incorreto · 3 pré-requisito ausente · 4 cancelado</p>
+</div>
+</sc-if>
+
+<sc-if value="{{pullTabs.hist}}" hint-placeholder-val="{{ false }}">
+<div style="border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 13px">
+<div style="display: grid; grid-template-columns: 1.1fr 2.4fr .8fr 1fr 1.4fr; gap: 12px; padding: 8px 12px; background: var(--surface-2); font-weight: 600"><span>Quando</span><span>Parâmetros</span><span>Duração</span><span>Status</span><span></span></div>
+<sc-for list="{{history}}" as="h" hint-placeholder-count="2">
+<div style="display: grid; grid-template-columns: 1.1fr 2.4fr .8fr 1fr 1.4fr; gap: 12px; padding: 8px 12px; border-top: 1px solid var(--border); align-items: center"><span>{{h.when}}</span><code class="mono" style="font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{h.params}}</code><span>{{h.dur}}</span><span style="color: {{h.color}}; font-weight: 600">{{h.status}}</span><span style="display: flex; gap: 12px"><button class="lnk" onClick="{{rerun}}">Reexecutar</button><button class="lnk" onClick="{{oosLog}}">Ver log</button></span></div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{isSpec}}" hint-placeholder-val="{{ false }}">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); flex-wrap: wrap"><span>Especificação</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg><span style="color: var(--text)">Template de especificação</span><span style="flex: 1"></span><span style="font-size: 12px">Rascunho salvo automaticamente</span><button class="btn" style="height: 30px; font-size: 13px" onClick="{{oosDrafts}}">Rascunhos<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+<div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap"><h1 class="h" style="margin: 0; font-size: 24px">Template de especificação</h1><span style="color: var(--text-muted); font-size: 13px">Gera o .md que a skill especificacao-funcionalidade espera.</span></div>
+
+<div role="tablist" aria-label="Seções da ferramenta" style="display: flex; gap: 20px; border-bottom: 1px solid var(--border)">
+<button role="tab" class="tab" aria-selected="{{specTabs.exec}}" onClick="{{sTabExec}}" style="border-bottom-color: {{specTabLine.exec}}; color: {{specTabFg.exec}}">Executar</button>
+<button role="tab" class="tab" aria-selected="{{specTabs.guide}}" onClick="{{sTabGuide}}" style="border-bottom-color: {{specTabLine.guide}}; color: {{specTabFg.guide}}">Guia</button>
+<button role="tab" class="tab" aria-selected="{{specTabs.hist}}" onClick="{{sTabHist}}" style="border-bottom-color: {{specTabLine.hist}}; color: {{specTabFg.hist}}">Histórico</button>
+</div>
+
+<sc-if value="{{specTabs.exec}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface)">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr))">
+
+<div class="scroll" style="padding: 16px; display: flex; flex-direction: column; gap: 12px; max-height: 560px; overflow: auto; border-right: 1px solid var(--border)">
+<div style="display: flex; align-items: center; gap: 10px"><span style="font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted); flex: 1">OBRIGATÓRIOS</span><span style="font-size: 12px; color: var(--text-muted)">{{reqCount}}/5</span><span aria-hidden="true" style="display: flex; gap: 4px"><sc-for list="{{reqDots}}" as="d" hint-placeholder-count="5"><span style="width: 8px; height: 8px; border-radius: 99px; background: {{d.bg}}"></span></sc-for></span></div>
+
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="s-nome" style="font-size: 13px; font-weight: 500">Nome da funcionalidade</label><input id="s-nome" class="fld" maxLength="120" placeholder="Rastreamento de ações do usuário" value="{{spec.nome}}" onChange="{{onNome}}"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="s-proj" style="font-size: 13px; font-weight: 500">Projeto e repositório</label>
+<div style="display: flex; gap: 8px"><input id="s-proj" class="fld" placeholder="Mighty Earth · mightyearth-vigilanciadacarne" value="{{spec.projeto}}" onChange="{{onProjeto}}"><button class="btn" onClick="{{pickRepo}}" aria-label="Escolher pasta do repositório" title="Pasta local do repositório (opcional)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></button></div>
+<sc-if value="{{hasRepo}}" hint-placeholder-val="{{ false }}"><span class="mono" style="font-size: 12px; color: var(--text-muted)">Pasta local: {{spec.repoPath}}</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="s-obj" style="font-size: 13px; font-weight: 500">Objetivo (1 a 3 frases)</label><textarea id="s-obj" class="fld" rows="3" placeholder="Saber quais regiões mobilizam mais…" value="{{spec.objetivo}}" onChange="{{onObjetivo}}"></textarea>
+<sc-if value="{{objTooLong}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: var(--warning)">Mais de 3 frases. O template pede um objetivo curto.</span></sc-if></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="s-quem" style="font-size: 13px; font-weight: 500">Quem usa</label><input id="s-quem" class="fld" placeholder="Visitante anônimo; admin do Payload; …" value="{{spec.quemUsa}}" onChange="{{onQuem}}"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span id="s-itens" style="font-size: 13px; font-weight: 500">O que precisa fazer <span style="font-weight: 400; color: var(--text-muted); font-size: 12px">· Enter cria item, Backspace no item vazio remove</span></span>
+<div role="group" aria-labelledby="s-itens" style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{itens}}" as="it" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 99px; background: var(--accent); flex: none"></span><input class="fld" aria-label="{{it.label}}" placeholder="criar enum para sys_action e tags" value="{{it.value}}" onChange="{{it.onChange}}" onKeyDown="{{it.onKeyDown}}" autoFocus="{{it.focus}}"><button class="ico" aria-label="Remover {{it.label}}" onClick="{{it.remove}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+</sc-for>
+<button class="lnk" style="align-self: flex-start; font-size: 13px" onClick="{{addItem}}">+ Adicionar item</button>
+</div></div>
+
+<button onClick="{{toggleOpt}}" aria-expanded="{{optOpen}}" style="display: flex; align-items: center; gap: 8px; background: transparent; border: 0; padding: 8px 0 0; font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted); text-align: left"><span style="display: inline-block; transform: rotate({{optRot}}); transition: transform .15s ease-out">▸</span>OPCIONAIS ({{optCount}}/8)</button>
+<sc-if value="{{optOpen}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{opts}}" as="o" hint-placeholder-count="8">
+<div style="display: flex; flex-direction: column; gap: 4px"><label for="{{o.inputId}}" style="font-size: 13px; font-weight: 500">{{o.label}}</label><span style="font-size: 12px; color: var(--text-muted)">{{o.help}}</span><textarea id="{{o.inputId}}" class="fld" rows="2" value="{{o.value}}" onChange="{{o.onChange}}"></textarea></div>
+</sc-for>
+</div>
+</sc-if>
+
+<button onClick="{{toggleAnx}}" aria-expanded="{{anxOpen}}" style="display: flex; align-items: center; gap: 8px; background: transparent; border: 0; padding: 8px 0 0; font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted); text-align: left"><span style="display: inline-block; transform: rotate({{anxRot}}); transition: transform .15s ease-out">▸</span>ANEXOS ({{anxCount}})</button>
+<sc-if value="{{anxOpen}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{anexos}}" as="a" hint-placeholder-count="1">
+<div style="display: grid; grid-template-columns: 1.2fr 1.4fr 1.4fr 32px; gap: 6px; align-items: center">
+<sc-if value="{{a.local}}" hint-placeholder-val="{{ true }}"><span class="mono" title="{{a.arquivo}}" style="font-size: 12px; display: flex; align-items: center; gap: 6px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>{{a.arquivo}}</span></sc-if>
+<sc-if value="{{a.text}}" hint-placeholder-val="{{ false }}"><input class="fld" style="height: 32px; font-size: 13px" aria-label="Arquivo ou link" placeholder="link ou nome" value="{{a.arquivo}}" onChange="{{a.onArq}}"></sc-if>
+<input class="fld" style="height: 32px; font-size: 13px" aria-label="O que é" placeholder="O que é" value="{{a.oQueE}}" onChange="{{a.onO}}">
+<input class="fld" style="height: 32px; font-size: 13px" aria-label="Observação" placeholder="Observação" value="{{a.obs}}" onChange="{{a.onObs}}">
+<button class="ico" aria-label="Remover anexo" onClick="{{a.remove}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+</div>
+</sc-for>
+<div style="display: flex; gap: 16px"><button class="lnk" style="font-size: 13px" onClick="{{addAnxFile}}">+ Arquivo local</button><button class="lnk" style="font-size: 13px" onClick="{{addAnxText}}">+ Só texto (link)</button></div>
+</div>
+</sc-if>
+</div>
+
+<div style="display: flex; flex-direction: column; min-width: 0; background: var(--bg)">
+<div style="display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--text-muted)"><span style="flex: 1; font-weight: 600; letter-spacing: .06em">PRÉ-VISUALIZAÇÃO (MARKDOWN)</span><span class="mono">especificacao-{{slug}}.md</span></div>
+<pre class="mono scroll" aria-label="Pré-visualização do Markdown" style="margin: 0; padding: 14px; font-size: 12px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; max-height: 516px; overflow: auto; color: var(--text)">{{md}}</pre>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-top: 1px solid var(--border); background: var(--surface); flex-wrap: wrap">
+<sc-if value="{{hasMissing}}" hint-placeholder-val="{{ true }}"><span role="status" style="flex: 1; display: flex; align-items: center; gap: 8px; color: var(--warning); font-size: 13px; min-width: 220px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg><span><strong>Falta:</strong> {{missingText}} <span style="color: var(--text-muted)">— vai como pergunta para a skill</span></span></span></sc-if>
+<sc-if value="{{noMissing}}" hint-placeholder-val="{{ false }}"><span role="status" style="flex: 1; display: flex; align-items: center; gap: 8px; color: var(--success); font-size: 13px; min-width: 220px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Obrigatórios completos</span></sc-if>
+<button class="btn" onClick="{{copyMd}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Copiar</button>
+<button class="btn" onClick="{{saveMd}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>Salvar .md</button>
+<button class="btn-p" onClick="{{genPkg}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"></path></svg>Gerar pacote</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{specTabs.guide}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 760px">
+<p style="margin: 0">Preencha só o que souber: o que faltar vira pergunta para a skill. Os obrigatórios vazios saem como <code class="mono">_(não informado)_</code>.</p>
+<ol style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px">
+<li>Preencha os obrigatórios e a lista “O que precisa fazer”.</li>
+<li>Abra Opcionais e Anexos se tiver regras, telas, métricas ou arquivos.</li>
+<li>Clique em <strong>Gerar pacote</strong>: a pasta abre e o prompt é copiado.</li>
+<li>No Claude, anexe a pasta e cole o prompt.</li>
+</ol>
+<p style="margin: 0; color: var(--text-muted); font-size: 13px">Pacotes vão para Documentos\ToolBelt\specs\&lt;projeto&gt;\ e nunca sobrescrevem: um segundo pacote no mesmo dia ganha o sufixo -2.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{specTabs.hist}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-if value="{{noPkgs}}" hint-placeholder-val="{{ true }}"><div style="padding: 28px; border: 1px dashed var(--border); border-radius: 10px; text-align: center; color: var(--text-muted)">Nenhum pacote gerado nesta sessão. Os pacotes também aparecem na Biblioteca de specs.</div></sc-if>
+<sc-for list="{{pkgs}}" as="p" hint-placeholder-count="0"><div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface)"><code class="mono" style="flex: 1; font-size: 12px">{{p.path}}</code><span style="font-size: 12px; color: var(--text-muted)">{{p.when}}</span></div></sc-for>
+</div>
+</sc-if>
+</div>
+</sc-if>
+</main>
+</div>
+
+<sc-if value="{{palOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; z-index: 20">
+<button aria-label="Fechar paleta" tabIndex="-1" onClick="{{closePalette}}" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--scrim); cursor: default"></button>
+<div class="anim" role="dialog" aria-modal="true" aria-label="Paleta de comandos" style="position: absolute; top: 72px; left: 50%; transform: translateX(-50%); width: min(640px, calc(100% - 32px)); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid var(--border)">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input aria-label="Buscar ferramenta, guia ou ação" placeholder="Buscar ferramenta, guia ou ação…" autoFocus="{{ true }}" value="{{q}}" onChange="{{onQ}}" onKeyDown="{{onPalKey}}" spellCheck="{{ false }}" style="flex: 1; height: 52px; border: 0; background: transparent; outline: none; font-size: 15px">
+<span class="kbd">Esc</span>
+</div>
+<div class="scroll" role="listbox" aria-label="Resultados" style="max-height: 400px; overflow: auto; padding: 6px">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<sc-if value="{{r.isHeader}}" hint-placeholder-val="{{ false }}"><div style="font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted); padding: 10px 10px 4px">{{r.header}}</div></sc-if>
+<sc-if value="{{r.isItem}}" hint-placeholder-val="{{ true }}">
+<button role="option" aria-selected="{{r.selected}}" onClick="{{r.pick}}" style="width: 100%; display: flex; align-items: center; gap: 12px; padding: 8px 10px; border: 0; border-radius: 6px; background: {{r.bg}}; text-align: left">
+<span aria-hidden="true" style="width: 28px; height: 28px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; background: {{r.iconBg}}; color: {{r.iconFg}}; flex: none">
+<sc-if value="{{r.isTool}}" hint-placeholder-val="{{ true }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"></path></svg></sc-if>
+<sc-if value="{{r.isGuide}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></sc-if>
+<sc-if value="{{r.isAction}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg></sc-if>
+<sc-if value="{{r.isDetect}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3M11 8v6M8 11h6"></path></svg></sc-if>
+</span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-weight: 500">{{r.label}}</span><span style="font-size: 12px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{r.sub}}</span></span>
+<sc-if value="{{r.selected}}" hint-placeholder-val="{{ false }}"><span class="kbd">Enter</span></sc-if>
+</button>
+</sc-if>
+</sc-for>
+<sc-if value="{{noRows}}" hint-placeholder-val="{{ false }}"><div style="padding: 24px 12px; text-align: center; color: var(--text-muted)">Nada encontrado para “{{q}}”. <button class="lnk" onClick="{{oosNew}}">Criar uma ferramenta nova</button></div></sc-if>
+</div>
+<div style="display: flex; gap: 16px; padding: 8px 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); flex-wrap: wrap"><span><span class="kbd">↑</span> <span class="kbd">↓</span> navegar</span><span><span class="kbd">Enter</span> abrir</span><span><span class="kbd">Esc</span> fechar</span><span style="flex: 1"></span><span>Cole um JWT ou Markdown para detectar a ferramenta</span></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{pkgOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; z-index: 30">
+<button aria-label="Fechar" tabIndex="-1" onClick="{{closePkg}}" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--scrim); cursor: default"></button>
+<div class="anim" role="dialog" aria-modal="true" aria-labelledby="pkg-title" style="position: absolute; top: 90px; left: 50%; transform: translateX(-50%); width: min(620px, calc(100% - 32px)); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 10px"><span aria-hidden="true" style="width: 28px; height: 28px; border-radius: 99px; background: var(--success); color: #fff; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg></span><h2 id="pkg-title" class="h" style="margin: 0; font-size: 18px">Pacote gerado</h2></div>
+<pre class="mono" style="margin: 0; padding: 12px; border-radius: 6px; background: var(--surface-2); font-size: 12px; line-height: 1.7; white-space: pre-wrap; word-break: break-all">{{pkgTree}}</pre>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--text-muted)">PROMPT.TXT</span><pre class="mono" style="margin: 0; padding: 12px; border-radius: 6px; border: 1px solid var(--border); font-size: 12px; line-height: 1.6; white-space: pre-wrap">{{prompt}}</pre></div>
+<div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap"><button class="btn" onClick="{{closePkg}}">Fechar</button><button class="btn" onClick="{{openPkgFolder}}">Abrir pasta</button><button class="btn-p" onClick="{{copyPrompt}}">Copiar prompt</button></div>
+</div>
+</div>
+</sc-if>
+
+<div role="status" aria-live="polite" style="position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 40; pointer-events: none">
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}"><div class="anim" style="padding: 10px 16px; border-radius: 10px; background: var(--text); color: var(--bg); font-size: 13px; font-weight: 500; box-shadow: var(--shadow); white-space: nowrap">{{toast}}</div></sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Protótipo"},"screen":{"editor":"enum","options":["home","pull","spec"],"default":"home","section":"Protótipo"},"palette":{"editor":"boolean","default":false,"section":"Protótipo"},"paletteQuery":{"editor":null,"default":""},"$preview":{"width":1280,"height":880}}'>
+class Component extends DCLogic {
+  st() { return this.state || {}; }
+  val(k, d) { const s = this.st(); return s[k] !== undefined ? s[k] : d; }
+  toast(msg) {
+    clearTimeout(this._tt);
+    this.setState({ toast: msg });
+    this._tt = setTimeout(() => this.setState({ toast: '' }), 2800);
+  }
+  componentWillUnmount() { clearTimeout(this._tt); (this._rt || []).forEach(clearTimeout); }
+  clip(text, msg) {
+    try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
+    this.toast(msg);
+  }
+  norm(s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
+  score(q, s) {
+    const a = this.norm(s); const i = a.indexOf(q);
+    if (i >= 0) return i;
+    let p = 0, gaps = 0;
+    for (const ch of q) { const j = a.indexOf(ch, p); if (j < 0) return -1; gaps += j - p; p = j + 1; }
+    return 100 + gaps;
+  }
+  slugify(s) {
+    const r = this.norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60).replace(/-+$/, '');
+    return r || 'sem-nome';
+  }
+  today() { const d = new Date(); const p = (n) => String(n).padStart(2, '0'); return { br: p(d.getDate()) + '/' + p(d.getMonth() + 1) + '/' + d.getFullYear(), iso: d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) }; }
+
+  defSpec() {
+    return {
+      nome: 'Rastreamento de ações do usuário',
+      projeto: 'Mighty Earth · mightyearth-vigilanciadacarne',
+      repoPath: '',
+      objetivo: 'Saber quais regiões mobilizam mais visitantes, para orientar as próximas campanhas.',
+      quemUsa: '',
+      itens: ['criar enum para sys_action e tags', 'registrar ação ao enviar o formulário de mobilização'],
+      opc: { regras: '', foraEscopo: '', dados: '', telas: '', metricas: '', restricoes: '', duvidas: '', decisores: '' },
+      anexos: [{ arquivo: 'system_actions.pdf', oQueE: 'Lista de ações do sistema', obs: '', local: true }]
+    };
+  }
+  spec() { return this.val('spec', null) || this.defSpec(); }
+  updSpec(patch) { this.setState({ spec: Object.assign({}, this.spec(), patch) }); }
+  OPT() {
+    return [
+      ['regras', 'Regras já conhecidas', 'Viram as regras de negócio (RN) da Parte A'],
+      ['foraEscopo', 'Fora de escopo', 'Evita que a especificação cresça além do pedido'],
+      ['dados', 'Dados e integrações', 'Base do modelo de dados e das integrações na Parte B'],
+      ['telas', 'Telas ou relatórios afetados', 'Onde instrumentar ou o que desenhar'],
+      ['metricas', 'Métricas de sucesso', 'Viram KPIs e critérios de aceite'],
+      ['restricoes', 'Restrições', 'Limitam as escolhas técnicas'],
+      ['duvidas', 'Dúvidas que você já tem', 'Entram direto na Parte C, com uma proposta'],
+      ['decisores', 'Quem decide / valida', 'Preenche a coluna “Decide” das decisões em aberto']
+    ];
+  }
+  cell(v) { return String(v).trim().replace(/\|/g, '\\|').replace(/\r?\n/g, '<br>'); }
+  renderMd(d) {
+    const NI = '_(não informado)_';
+    const req = (v) => (v && v.trim() ? this.cell(v) : NI);
+    const L = [];
+    L.push('# Template — Especificação de funcionalidade: ' + (d.nome.trim() || NI), '');
+    L.push(this.today().br + ' · @xavier', '');
+    L.push('## Campos obrigatórios', '', '| Campo | Valor |', '|-------|-------|');
+    L.push('| Nome da funcionalidade | ' + req(d.nome) + ' |');
+    L.push('| Projeto e repositório | ' + req(d.projeto) + ' |');
+    L.push('| Objetivo (1 a 3 frases) | ' + req(d.objetivo) + ' |');
+    L.push('| Quem usa | ' + req(d.quemUsa) + ' |', '');
+    L.push('**O que precisa fazer**', '');
+    const its = d.itens.filter((x) => x.trim());
+    if (its.length) its.forEach((x) => L.push('- ' + x.trim())); else L.push('- ' + NI);
+    const opt = this.OPT().filter(([id]) => d.opc[id] && d.opc[id].trim());
+    if (opt.length) {
+      L.push('', '## Campos opcionais', '', '| Campo | Valor |', '|-------|-------|');
+      opt.forEach(([id, label]) => L.push('| ' + label + ' | ' + this.cell(d.opc[id]) + ' |'));
+    }
+    const ax = d.anexos.filter((a) => (a.arquivo + a.oQueE + a.obs).trim());
+    if (ax.length) {
+      L.push('', '## Anexos', '', '| Arquivo | O que é | Observação |', '|---------|---------|------------|');
+      ax.forEach((a) => L.push('| ' + this.cell(a.arquivo) + ' | ' + this.cell(a.oQueE) + ' | ' + this.cell(a.obs) + ' |'));
+    }
+    if (d.repoPath) L.push('', '## Repositório', '', 'Pasta local: `' + d.repoPath + '`');
+    return L.join('\n');
+  }
+  missing(d) {
+    const m = [];
+    if (!d.nome.trim()) m.push('Nome');
+    if (!d.projeto.trim()) m.push('Projeto');
+    if (!d.objetivo.trim()) m.push('Objetivo');
+    if (!d.quemUsa.trim()) m.push('Quem usa');
+    if (!d.itens.some((x) => x.trim())) m.push('O que precisa fazer');
+    return m;
+  }
+
+  palItems() {
+    const t = (label, sub, target, kw) => ({ kind: 'tool', label, sub, target: target || 'oos:' + label, kw: kw || '' });
+    return {
+      tools: [
+        t('Pull App DB', 'Banco de Dados · GDF Boticário', 'pull', 'adb sqlite android banco'),
+        t('Push App DB', 'Banco de Dados · GDF Boticário · destrutiva', null, 'adb sqlite android'),
+        t('Seed DB', 'Banco de Dados · GDF Boticário · destrutiva', null, 'bruno sqlite massa'),
+        t('Template de especificação', 'Especificação · gera o .md para a skill', 'spec', 'spec skill template'),
+        t('Markdown → Texto', 'Formatação & Conversão', null, 'md converter'),
+        t('HTML → PDF', 'Formatação & Conversão', null, 'pdf'),
+        t('JWT Decoder', 'DevTools', null, 'token jwt'),
+        t('Export Audit JSON', 'API & Massa de Teste · GDF Boticário', null, 'bruno auditoria'),
+        t('Send JSON Files', 'API & Massa de Teste · GDF Boticário', null, 'bruno enviar'),
+        t('Sync Items Transform', 'API & Massa de Teste · GDF Boticário', null, 'jq transform'),
+        t('Generate Request Body', 'API & Massa de Teste · GDF Boticário', null, 'imagem magick'),
+        t('Git Remote SSH', 'Git', null, 'ssh remoto'),
+        t('Git Report', 'Git', null, 'relatório html'),
+        t('Full-page Screenshot', 'Web & QA', null, 'playwright captura')
+      ],
+      guides: [
+        { kind: 'guide', label: 'Restaurar banco do app', sub: 'Guia · Pull App DB → inspecionar → Push App DB', target: 'oos:Guia Restaurar banco do app', kw: 'banco fluxo' },
+        { kind: 'guide', label: 'Massa de teste GDF', sub: 'Guia · export → transform → send', target: 'oos:Guia Massa de teste GDF', kw: 'bruno fluxo' },
+        { kind: 'guide', label: 'Biblioteca de specs', sub: 'Guias · especificações por projeto', target: 'oos:Biblioteca de specs', kw: 'especificacao' }
+      ],
+      actions: [
+        { kind: 'action', label: 'Nova ferramenta', sub: 'Formulário, importar script ou gerar com IA', target: 'oos:Nova ferramenta', kw: 'criar fabrica' },
+        { kind: 'action', label: 'Abrir cofre de segredos', sub: 'Configurações › Cofre', target: 'oos:Cofre de segredos', kw: 'segredo apigee' },
+        { kind: 'action', label: 'Alternar tema claro/escuro', sub: 'Aparência', target: 'theme', kw: 'dark light' },
+        { kind: 'action', label: 'Ir para o Início', sub: 'Tela inicial', target: 'home', kw: 'home' }
+      ]
+    };
+  }
+  detect(raw) {
+    const q = raw.trim();
+    if (/^eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]+/.test(q)) return { kind: 'detect', label: 'JWT Decoder', sub: 'Isso parece um token JWT — abrir e decodificar', target: 'oos:JWT Decoder' };
+    if (/^#{1,6}\s|\n\s*[-*]\s|\*\*[^*]+\*\*/.test(raw)) return { kind: 'detect', label: 'Markdown → Texto', sub: 'Isso parece Markdown — converter para texto', target: 'oos:Markdown → Texto' };
+    return null;
+  }
+  buildRows(q) {
+    const P = this.palItems();
+    const groups = [];
+    const det = this.detect(q);
+    const nq = this.norm(q.trim());
+    if (det) groups.push(['Detectado no conteúdo colado', [det]]);
+    else if (!nq) {
+      groups.push(['Recentes', [P.tools[3], P.tools[0], P.tools[11]]]);
+      groups.push(['Ações', P.actions]);
+    } else {
+      const f = (list, max) => list.map((it) => {
+        const a = this.score(nq, it.label); const b = this.score(nq, it.kw + ' ' + it.sub);
+        const sc = a >= 0 ? a : (b >= 0 ? 200 + b : -1);
+        return [sc, it];
+      }).filter((x) => x[0] >= 0).sort((x, y) => x[0] - y[0]).slice(0, max).map((x) => x[1]);
+      const tl = f(P.tools, 7), gl = f(P.guides, 3), al = f(P.actions, 3);
+      if (tl.length) groups.push(['Ferramentas', tl]);
+      if (gl.length) groups.push(['Guias', gl]);
+      if (al.length) groups.push(['Ações', al]);
+    }
+    return groups;
+  }
+  go(target) {
+    const base = { palOpen: false, q: '', sel: 0 };
+    if (target === 'pull' || target === 'spec' || target === 'home') { this.setState(Object.assign(base, { screen: target, catDbOpen: target === 'pull' ? true : this.val('catDbOpen', true) })); return; }
+    if (target === 'theme') { this.setState(Object.assign(base, { theme: this.theme() === 'dark' ? 'light' : 'dark' })); return; }
+    this.setState(base);
+    this.toast('“' + target.replace(/^oos:/, '') + '” fica fora deste protótipo');
+  }
+  theme() { return this.val('theme', this.props.theme || 'dark'); }
+
+  runSim() {
+    (this._rt || []).forEach(clearTimeout); this._rt = [];
+    const pull = this.pullVals();
+    const adbOk = this.val('adbOk', false);
+    const t0 = Date.now();
+    const cmd = this.cmdFor(pull);
+    const steps = adbOk ? [
+      ['step', '[1/4] Verificando dispositivo ADB…            OK', 1],
+      ['step', '[2/4] Verificando banco no device…            OK', 2],
+      ['step', '[3/4] Copiando ' + pull.db.split('/').pop() + '…       OK', 3],
+      ['step', '[4/4] Validando cabeçalho SQLite…             OK', 4],
+      ['out', '::output:: ' + pull.out.replace(/\/+$/, '') + '/' + (pull.db.split('/').pop() || 'app.db'), 4],
+      ['ok', '✔ Concluído com sucesso (código 0)', 4]
+    ] : [
+      ['step', '[1/4] Verificando dispositivo ADB…', 1],
+      ['err', '✖ adb não encontrado no PATH. Instale o Android Platform Tools.', 1],
+      ['err', '✖ Processo terminou com código 3 (pré-requisito ausente)', 1]
+    ];
+    this.setState({ run: { status: 'running', step: 0, lines: [['cmd', cmd]], output: '' } });
+    steps.forEach((s, i) => {
+      this._rt.push(setTimeout(() => {
+        const r = this.val('run', {});
+        if (r.status !== 'running') return;
+        const last = i === steps.length - 1;
+        const nr = { status: last ? (adbOk ? 'ok' : 'fail') : 'running', step: s[2], lines: r.lines.concat([[s[0], s[1]]]), output: s[0] === 'out' ? s[1].replace('::output:: ', '') : r.output };
+        const st = { run: nr };
+        if (last) {
+          const dur = ((Date.now() - t0) / 1000).toFixed(1).replace('.', ',') + ' s';
+          st.history = [{ when: 'Agora', params: cmd.replace(/^\$ tools\/pull-app-db\/run\.sh /, ''), dur, ok: adbOk }].concat(this.historyVals());
+        }
+        this.setState(st);
+      }, 550 * (i + 1)));
+    });
+  }
+  pullVals() { return this.val('pull', null) || { pkg: 'com.boticario.gdfauditoria', db: 'app_flutter/database/gdf_boticario.db', out: '~/ToolBelt/out/android_db' }; }
+  updPull(k, v) { const p = Object.assign({}, this.pullVals()); p[k] = v; this.setState({ pull: p }); }
+  cmdFor(p) {
+    const qq = (v) => (/[\s"'$]/.test(v) ? '"' + v.replace(/"/g, '\\"') + '"' : v || '""');
+    return '$ tools/pull-app-db/run.sh --pkg ' + qq(p.pkg) + ' --db-path ' + qq(p.db) + ' --out ' + qq(p.out);
+  }
+  historyVals() {
+    return this.val('history', null) || [
+      { when: 'Hoje 09:14', params: '--pkg com.boticario.gdfauditoria --out ~/ToolBelt/out/android_db', dur: '3,1 s', ok: true },
+      { when: 'Ontem 17:52', params: '--pkg com.boticario.gdfauditoria', dur: '0,4 s', ok: false }
+    ];
+  }
+
+  renderVals() {
+    const s = this.st();
+    const theme = this.theme();
+    const screen = this.val('screen', this.props.screen || 'home');
+    const palOpen = this.val('palOpen', !!this.props.palette);
+    const q = this.val('q', this.props.paletteQuery || '');
+    const on = (x) => x;
+    const navBg = (k) => (screen === k ? 'var(--accent-soft)' : 'transparent');
+    const navFg = (k) => (screen === k ? 'var(--accent-text)' : 'var(--text-muted)');
+    const tabs = (cur) => ({ exec: cur === 'exec', guide: cur === 'guide', hist: cur === 'hist' });
+    const tabLine = (cur) => ({ exec: cur === 'exec' ? 'var(--accent)' : 'transparent', guide: cur === 'guide' ? 'var(--accent)' : 'transparent', hist: cur === 'hist' ? 'var(--accent)' : 'transparent' });
+    const tabFg = (cur) => ({ exec: cur === 'exec' ? 'var(--text)' : 'var(--text-muted)', guide: cur === 'guide' ? 'var(--text)' : 'var(--text-muted)', hist: cur === 'hist' ? 'var(--text)' : 'var(--text-muted)' });
+    const oos = (name) => () => this.toast('“' + name + '” fica fora deste protótipo');
+
+    // Paleta
+    const groups = palOpen ? this.buildRows(q) : [];
+    const selectable = [];
+    groups.forEach((g) => g[1].forEach((it) => selectable.push(it)));
+    const sel = Math.min(Math.max(0, this.val('sel', 0)), Math.max(0, selectable.length - 1));
+    this._pal = selectable; this._sel = sel;
+    const rows = [];
+    let idx = 0;
+    groups.forEach((g) => {
+      rows.push({ isHeader: true, isItem: false, header: g[0].toUpperCase() });
+      g[1].forEach((it) => {
+        const me = idx++;
+        const selected = me === sel;
+        rows.push({
+          isHeader: false, isItem: true, label: it.label, sub: it.sub, selected,
+          isTool: it.kind === 'tool', isGuide: it.kind === 'guide', isAction: it.kind === 'action', isDetect: it.kind === 'detect',
+          bg: selected ? 'var(--surface-2)' : 'transparent',
+          iconBg: selected || it.kind === 'detect' ? 'var(--accent)' : 'var(--surface-2)',
+          iconFg: selected || it.kind === 'detect' ? 'var(--accent-fg)' : 'var(--text-muted)',
+          pick: () => this.go(it.target)
+        });
+      });
+    });
+
+    // Pull
+    const pull = this.pullVals();
+    const adbOk = this.val('adbOk', false);
+    const r = this.val('run', { status: 'idle', step: 0, lines: [], output: '' });
+    const colors = { cmd: '#9a9a9a', step: '#e7e7e5', ok: '#4ade80', err: '#f87171', out: '#FF8A33' };
+    const statusText = { idle: 'Pronto para executar', running: 'Executando… passo ' + r.step + '/4', ok: 'Concluído · código 0', fail: 'Falhou · código 3' }[r.status];
+    const statusColor = { idle: 'var(--text-muted)', running: 'var(--accent-text)', ok: 'var(--success)', fail: 'var(--danger)' }[r.status];
+    const pullTab = this.val('pullTab', 'exec');
+
+    // Spec
+    const sp = this.spec();
+    const md = this.renderMd(sp);
+    const miss = this.missing(sp);
+    const reqFilled = 5 - miss.length;
+    const specTab = this.val('specTab', 'exec');
+    const focusIdx = this.val('focusIdx', -1);
+    const itens = sp.itens.map((v, i) => ({
+      value: v, label: 'Item ' + (i + 1), focus: i === focusIdx,
+      onChange: (e) => { const a = sp.itens.slice(); a[i] = e.target.value; this.updSpec({ itens: a }); },
+      onKeyDown: (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); const a = sp.itens.slice(); a.splice(i + 1, 0, ''); this.setState({ spec: Object.assign({}, sp, { itens: a }), focusIdx: i + 1 }); }
+        else if (e.key === 'Backspace' && !v && sp.itens.length > 1) { e.preventDefault(); const a = sp.itens.slice(); a.splice(i, 1); this.setState({ spec: Object.assign({}, sp, { itens: a }), focusIdx: Math.max(0, i - 1) }); }
+      },
+      remove: () => { const a = sp.itens.slice(); a.splice(i, 1); this.updSpec({ itens: a.length ? a : [''] }); }
+    }));
+    const opts = this.OPT().map(([id, label, help]) => ({
+      id, label, help, inputId: 'opt-' + id, value: sp.opc[id],
+      onChange: (e) => { const o = Object.assign({}, sp.opc); o[id] = e.target.value; this.updSpec({ opc: o }); }
+    }));
+    const updAnx = (i, k, v) => { const a = sp.anexos.map((x) => Object.assign({}, x)); a[i][k] = v; this.updSpec({ anexos: a }); };
+    const anexos = sp.anexos.map((a, i) => ({
+      arquivo: a.arquivo, oQueE: a.oQueE, obs: a.obs, local: !!a.local, text: !a.local,
+      onArq: (e) => updAnx(i, 'arquivo', e.target.value), onO: (e) => updAnx(i, 'oQueE', e.target.value), onObs: (e) => updAnx(i, 'obs', e.target.value),
+      remove: () => { const x = sp.anexos.slice(); x.splice(i, 1); this.updSpec({ anexos: x }); }
+    }));
+    const slug = this.slugify(sp.nome);
+    const projSlug = this.slugify((sp.projeto.split('·')[0] || '').trim() || 'sem-projeto');
+    const optOpen = this.val('optOpen', false), anxOpen = this.val('anxOpen', true);
+    const pkgs = this.val('pkgs', []);
+    const pkg = this.val('pkg', null);
+
+    return {
+      themeClass: theme, isDark: theme === 'dark', isLight: theme === 'light',
+      themeLabel: theme === 'dark' ? 'Usar tema claro' : 'Usar tema escuro',
+      toggleTheme: () => this.setState({ theme: theme === 'dark' ? 'light' : 'dark' }),
+      sidebarOpen: this.val('sidebarOpen', true),
+      toggleSidebar: () => this.setState({ sidebarOpen: !this.val('sidebarOpen', true) }),
+      isHome: screen === 'home', isPull: screen === 'pull', isSpec: screen === 'spec',
+      navHomeBg: navBg('home'), navHomeFg: navFg('home'), navPullBg: navBg('pull'), navPullFg: navFg('pull'), navSpecBg: navBg('spec'), navSpecFg: navFg('spec'),
+      goHome: () => this.go('home'), goPull: () => this.go('pull'), goSpec: () => this.go('spec'),
+      catDbOpen: this.val('catDbOpen', true), catSpecOpen: this.val('catSpecOpen', true),
+      toggleCatDb: () => this.setState({ catDbOpen: !this.val('catDbOpen', true) }),
+      toggleCatSpec: () => this.setState({ catSpecOpen: !this.val('catSpecOpen', true) }),
+      oosSettings: oos('Configurações'), oosGitSsh: oos('Git Remote SSH'), oosCat: oos('Esta categoria'), oosPush: oos('Push App DB'), oosSeed: oos('Seed DB'),
+      oosGuides: oos('Guias'), oosNew: oos('Nova ferramenta'), oosJwt: oos('JWT Decoder'), oosLog: oos('Ver log'), oosDrafts: oos('Lista de rascunhos'),
+
+      palOpen, q, rows, noRows: palOpen && !rows.length,
+      openPalette: () => this.setState({ palOpen: true, q: '', sel: 0 }),
+      closePalette: () => this.setState({ palOpen: false }),
+      onQ: (e) => this.setState({ q: e.target.value, sel: 0 }),
+      onPalKey: (e) => {
+        const n = (this._pal || []).length;
+        if (e.key === 'ArrowDown') { e.preventDefault(); if (n) this.setState({ sel: (this._sel + 1) % n }); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); if (n) this.setState({ sel: (this._sel - 1 + n) % n }); }
+        else if (e.key === 'Enter') { e.preventDefault(); const it = (this._pal || [])[this._sel]; if (it) this.go(it.target); }
+        else if (e.key === 'Escape') { e.preventDefault(); this.setState({ palOpen: false }); }
+      },
+
+      adbMissing: !adbOk, adbOk,
+      adbStatus: adbOk ? '✔ OK' : '⚠ Ausente', adbColor: adbOk ? 'var(--success)' : 'var(--warning)',
+      fixAdb: () => { this.setState({ adbOk: true }); this.toast('adb encontrado em C:\\Android\\platform-tools (simulado)'); },
+      pullTabs: tabs(pullTab), pullTabLine: tabLine(pullTab), pullTabFg: tabFg(pullTab),
+      tabExec: () => this.setState({ pullTab: 'exec' }), tabGuide: () => this.setState({ pullTab: 'guide' }), tabHist: () => this.setState({ pullTab: 'hist' }),
+      pull,
+      onPkg: (e) => this.updPull('pkg', e.target.value), onDb: (e) => this.updPull('db', e.target.value), onOut: (e) => this.updPull('out', e.target.value),
+      pickFolder: () => this.toast('Abriria o seletor de pasta do sistema'),
+      cmd: this.cmdFor(pull),
+      copyCmd: () => this.clip(this.cmdFor(pull).replace(/^\$ /, ''), 'Comando copiado'),
+      run: {
+        running: r.status === 'running', empty: !r.lines.length,
+        lines: r.lines.map((l) => ({ text: l[1], color: colors[l[0]] })),
+        pct: (r.status === 'idle' ? 0 : Math.round((r.step / 4) * 100)) + '%',
+        barColor: r.status === 'fail' ? 'var(--danger)' : r.status === 'ok' ? 'var(--success)' : 'var(--accent)',
+        statusText, statusColor, btnOpacity: r.status === 'running' ? '.5' : '1',
+        hasOutput: r.status === 'ok' && !!r.output, output: r.output
+      },
+      startRun: () => this.runSim(),
+      cancelRun: () => { (this._rt || []).forEach(clearTimeout); const rr = this.val('run', {}); this.setState({ run: Object.assign({}, rr, { status: 'fail', lines: rr.lines.concat([['err', '✖ Cancelado pelo usuário (código 4)']]) }) }); },
+      openOut: () => this.toast('Abriria a pasta no Explorador de Arquivos'),
+      copyOut: () => this.clip(r.output, 'Caminho copiado'),
+      history: this.historyVals().map((h) => ({ when: h.when, params: h.params, dur: h.dur, status: h.ok ? '✔ OK' : '✖ Código 3', color: h.ok ? 'var(--success)' : 'var(--danger)' })),
+      rerun: () => { this.setState({ pullTab: 'exec' }); this.runSim(); },
+
+      spec: sp, md, slug,
+      specTabs: tabs(specTab), specTabLine: tabLine(specTab), specTabFg: tabFg(specTab),
+      sTabExec: () => this.setState({ specTab: 'exec' }), sTabGuide: () => this.setState({ specTab: 'guide' }), sTabHist: () => this.setState({ specTab: 'hist' }),
+      reqCount: reqFilled,
+      reqDots: [0, 1, 2, 3, 4].map((i) => ({ bg: i < reqFilled ? 'var(--accent)' : 'var(--border)' })),
+      onNome: (e) => this.updSpec({ nome: e.target.value }),
+      onProjeto: (e) => this.updSpec({ projeto: e.target.value }),
+      onObjetivo: (e) => this.updSpec({ objetivo: e.target.value }),
+      onQuem: (e) => this.updSpec({ quemUsa: e.target.value }),
+      objTooLong: (sp.objetivo.match(/[.!?](\s|$)/g) || []).length > 3,
+      hasRepo: !!sp.repoPath,
+      pickRepo: () => { this.updSpec({ repoPath: 'C:\\Users\\livia\\_code\\mightyearth-vigilanciadacarne' }); this.toast('Pasta do repositório escolhida (simulado)'); },
+      itens, addItem: () => this.setState({ spec: Object.assign({}, sp, { itens: sp.itens.concat(['']) }), focusIdx: sp.itens.length }),
+      optOpen, optRot: optOpen ? '90deg' : '0deg', toggleOpt: () => this.setState({ optOpen: !optOpen }),
+      optCount: this.OPT().filter(([id]) => sp.opc[id] && sp.opc[id].trim()).length, opts,
+      anxOpen, anxRot: anxOpen ? '90deg' : '0deg', toggleAnx: () => this.setState({ anxOpen: !anxOpen }),
+      anxCount: sp.anexos.length, anexos,
+      addAnxFile: () => { this.updSpec({ anexos: sp.anexos.concat([{ arquivo: 'anexo-' + (sp.anexos.length + 1) + '.pdf', oQueE: '', obs: '', local: true }]) }); this.toast('Arquivo escolhido pelo seletor do sistema (simulado)'); },
+      addAnxText: () => this.updSpec({ anexos: sp.anexos.concat([{ arquivo: '', oQueE: '', obs: '', local: false }]) }),
+      hasMissing: miss.length > 0, noMissing: miss.length === 0, missingText: miss.join(', '),
+      copyMd: () => this.clip(md, 'Template copiado. Cole no Claude junto dos anexos.'),
+      saveMd: () => this.toast('Salvo como especificacao-' + slug + '.md (diálogo do sistema simulado)'),
+      genPkg: () => {
+        const base = 'Documentos\\ToolBelt\\specs\\' + projSlug + '\\' + this.today().iso + '-' + slug;
+        const n = pkgs.filter((p) => p.base === base).length;
+        const folder = base + (n ? '-' + (n + 1) : '');
+        const files = sp.anexos.filter((a) => a.local && a.arquivo).map((a) => a.arquivo);
+        const tree = folder + '\\\n├─ especificacao-' + slug + '.md\n├─ anexos\\' + (files.length ? '\n' + files.map((f, i) => '│  ' + (i === files.length - 1 ? '└─ ' : '├─ ') + f).join('\n') : '  (vazio)') + '\n├─ PROMPT.txt\n└─ .spec.json';
+        const prompt = 'Gere a especificação a partir deste template.\nAnexei: especificacao-' + slug + '.md' + (files.length ? ' e os arquivos da pasta anexos/ (' + files.join(', ') + ')' : '') + '.' + (sp.repoPath ? '\nO repositório está em: ' + sp.repoPath : '');
+        this.setState({ pkg: { tree, prompt }, pkgs: [{ base, path: folder, when: 'agora' }].concat(pkgs) });
+      },
+      pkgOpen: !!pkg, pkgTree: pkg ? pkg.tree : '', prompt: pkg ? pkg.prompt : '',
+      closePkg: () => this.setState({ pkg: null }),
+      openPkgFolder: () => this.toast('Abriria a pasta do pacote no Explorador'),
+      copyPrompt: () => { this.clip(pkg ? pkg.prompt : '', 'Prompt copiado. Cole no Claude e anexe a pasta.'); this.setState({ pkg: null }); },
+      noPkgs: !pkgs.length, pkgs,
+
+      toast: s.toast || '', hasToast: !!s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

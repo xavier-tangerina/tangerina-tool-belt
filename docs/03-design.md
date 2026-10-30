@@ -24,7 +24,9 @@ Regras:
 | `--text` | `#f5f5f4` | `#141414` | Texto principal |
 | `--text-muted` | `#a3a3a3` | `#5c5c5c` | Rótulos, ajuda |
 | `--accent` | `#FF6A00` | `#E55F00` | Primário, ativo, foco |
-| `--accent-fg` | `#0d0d0d` | `#ffffff` | Texto sobre o acento |
+| `--accent-fg` | `#0d0d0d` | `#0d0d0d` | Texto sobre o acento (D26; era `#ffffff` no claro) |
+| `--accent-text` | `#FF7A1A` | `#B84A00` | Laranja como texto: links, item ativo, chips (D26) |
+| `--accent-soft` | `rgba(255,106,0,.14)` | `rgba(229,95,0,.12)` | Fundo do item ativo e de chips |
 | `--success` | `#22c55e` | `#15803d` | Execução OK |
 | `--warning` | `#f59e0b` | `#b45309` | Pré-requisito ausente |
 | `--danger` | `#ef4444` | `#b91c1c` | Erro, ação destrutiva |
@@ -133,6 +135,6 @@ Base: **shadcn/ui + Tailwind CSS** (componentes copiados para o repositório, co
 
 ## 8. Próximos passos de design
 
-1. Montar o protótipo das telas T1, T2, T4 e da Ferramenta 01 (como artefato de design para revisão).
-2. Validar os tokens de contraste.
+1. ~~Montar o protótipo das telas T1, T2, T4 e da Ferramenta 01~~ → feito, em revisão ([doc 07](07-prototipo.md)).
+2. ~~Validar os tokens de contraste~~ → D26 aprovada (doc 07, seção 4); revalidar AA na implementação.
 3. Desenhar o ícone do app (cinto + laranja).
